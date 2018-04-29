@@ -1,20 +1,32 @@
-import account
-import evro
+flag = "+"
+while flag == "+":
+    print("\n","Добро пожаловать в банк выдачи кредита в иностранной валюте")
 
+    euro = 60
+    usd = 57
+    print("\n","Курс евро = ",euro,"\n","Курс доллара = ",usd)
 
-def main():
-    rate = int(input("Введите процентную ставку: "))
-    money = int(input("Введите сумму: "))
-    period = int(input("Введите период ведения счета в месяцах: "))
+    currency = int(input("\nВведите код валюты, в которой вы хотите взять кредит (Евро - 1, Доллар - 2) "))
+    x = (input("\nВведите с какой целью вы хотите взять кредит: "))
 
-    result = account.calculate_income(rate, money, period)
-    print("Параметры счета:\n", "Сумма: ", money, "\n", "Ставка: ", rate, "\n", "Период: ", period, "\n",
-          "Сумма на счете в конце периода: ", result)
-
-    currency = int(input("Укажите код валюты (доллары - 400, евро - 401, брит.фунт - 402, гривна - 403)): "))
-    a = evro.procedure_income(result, currency)
-    print("Итого:", a)
-
-
-if __name__ == "__main__":
-    main()
+    if currency == 1:
+        money = int(input("Введите количество евро, которые вы ходите взять в кредит: "))
+        if money > 0:
+            rate = int(input("Введите процентную ставку = "))
+            period = int(input("Введите период, на который вы берете кредит = "))
+            result = round((((money*rate)/100)+money),0)
+            mounth = round(result/period,2)
+            print("Вам надо будет отдать банку: ",result,"Евро","или по",mounth,"Евро в течение",period,"месяцев")
+        else:
+            print("Введите сумму побольше чем 0 :) ")
+    elif currency == 2:
+        money = int(input("Введите количество долларов, которые вы ходите взять в кредит: "))
+        if money > 0:
+            rate = int(input("Введите процентную ставку = "))
+            period = int(input("Введите период на который вы берете кредит = "))
+            result = round((((money*rate)/100)+money),0)
+            mounth = round(result/period,2)
+            print("Вам надо будет отдать банку: ",result,"Долларов","или по",mounth,"Долларов в течение",period,"месяцев")
+        else:
+            print("Введите сумму побольше чем 0 :) ")
+    flag = input("\tЖелаете еще взять кредит? ( + или - ) ")
